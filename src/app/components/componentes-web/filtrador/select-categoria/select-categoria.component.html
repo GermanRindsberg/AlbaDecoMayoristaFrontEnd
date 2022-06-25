@@ -1,0 +1,10 @@
+    <select 
+    [(ngModel)]="selectInfo" 
+    (ngModelChange)="filtrarCategoria($event)" 
+    class="form-select" 
+    aria-label="Default select example">
+        <option value="" selected >Selecciona una categoria</option>
+
+        <option *ngFor="let item of listaProductos" [value]="item">{{item}}
+        </option>
+      </select>

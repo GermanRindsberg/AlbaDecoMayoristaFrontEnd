@@ -1,0 +1,18 @@
+    <!-- BOTON LOGIN -->
+    <div class="btn-group dropdown me-lg-5 me-4">
+            <label class="text-warning" for="botonLogin"></label>
+        
+            <button class="btn btn-primary  dropdown-toggle" type="button" id="botonLogin" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="../../../assets/user.png" height="40px" alt="">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="botonLogin">
+                <li><a class="dropdown-item" *ngIf="!usuario" [routerLink]="['/login']">Ingresar</a></li>
+                <li><a class="dropdown-item" *ngIf="usuario" href="#" onclick="event.preventDefault()" (click)="signOut()">Salir</a></li>
+                <li><a class="dropdown-item" href="" [routerLink]="['../registro']">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="" [routerLink]="['../verMisPedidos']">Mis pedidos</a></li>
+                <li><a class="dropdown-item" href="" [routerLink]="['../administracion']">Administracion</a></li>
+            </ul>
+        </div>
+    <!-- FIN BOTON LOGIN -->
+    <p *ngIf="mostrar">Hola<br> <b class="text-uppercase text-info">{{usuario}}</b></p>

@@ -1,0 +1,85 @@
+<!-- Modal -->
+<div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1  id="exampleModalLabel">Pedido #{{numeroPedido}}</h1>                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="row align-items-center text-center fs-6 my-2 border p-0 m-0">
+                <div class="col">
+                    <label for="">Fecha del pedido: <b> {{fechaPedido}}</b></label>
+                </div>
+                <div class="col">
+                    <label for="">Fecha de seña: <b> {{fechaSena}}</b></label>
+                </div>
+                <div class="col">
+                    <label for="">Estado del pedido: <b  class="text-capitalize">{{estadoPedido}}</b></label>
+                </div>
+            </div>
+
+            <div class="row align-items-center text-center fs-6 my-2 border p-0 m-0">
+                <div class="col">
+                    <label for="">Fecha de envio: <b> {{fechaEnvio}}</b></label>
+                </div>
+                <div class="col">
+                    <label for="">Numero de guia: <b> {{numeroGuiaEnvio}}</b></label>
+                </div>
+
+                <div class="col">
+                    <label for="">Transporte: <b> {{transporte}}</b></label>
+                </div>
+    
+            </div>
+          
+            <div class="modal-body">
+                <table class="table table-striped border border-2 border-dark rounded text-center">
+                    <thead class="bg-info">
+                        <tr>
+                            <th>Nombre item<br></th>
+                            <th>Variante<br></th>
+                            <th>Costo unitario<br></th>
+                            <th>Cantidad</th>
+                            <th>SubTotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let producto of maestroDetalle">
+                            <td>{{producto.producto.nombre}}</td>
+                            <td class="text-center"><div class="circulito" style="background-color: {{producto.variante.color}};"></div></td>
+                            <td>${{producto.precioUnitario}}</td>
+                            <td>{{producto.cantidad}}</td>
+                            <td>{{producto.subTotal}}</td>
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td>Sub-total</td> 
+                            <td>{{subTotalSinDescuento}}</td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td>Descuento</td> 
+                            <td>{{descuento}}</td> 
+                        </tr>
+                        <tr>
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td class="bg-secondary text-light border">Total</td> 
+                            <td class="bg-secondary text-light">{{montoTotal}}</td> 
+                        </tr>
+                    </tbody>
+        
+                </table>
+              
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container text-center mb-5 pb-5" tabindex="-1" id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel">
+
+  <h2 class="pt-5" id="offcanvasExampleLabel">Agregar Producto</h2>
+
+  <div class="row my-3 ">
+    <div class="col text-center mx-5 ">
+      <app-fotos-producto (fotosEmit)="archivoFotos=$event"></app-fotos-producto>
+    </div>
+  </div>
+
+
+  <div class="row my-3 px-5 ">
+    <div class="col">
+      <app-datos-producto (datosProducto)="datosProducto=$event"></app-datos-producto>
+    </div>
+  </div>
+
+
+  <div class="row my-3 px-5 ">
+    <div class="col">
+      <app-select-familia 
+      (categoriaEmit)="categoriaProducto=$event"
+      (subCategoriaEmit)="subCategoriaProducto=$event"
+      (varianteEmit)="variantesProducto=$event"
+      ></app-select-familia>
+    </div>
+  </div>
+
+
+  <div class="row my-3 px-5 ">
+    <div class="col">
+      <button class="btn btn-success" (click)="guardarProducto()">Guardar producto</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-secondary" [routerLink]="['/gestionProductos']" >Volver</button>
+    </div>
+  </div>
+
+
+</div>

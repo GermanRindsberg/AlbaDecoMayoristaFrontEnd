@@ -1,0 +1,90 @@
+<!-- AREA DIRECCION -->
+
+<div class="row">
+    <div class="col">
+        <h2>Direccion de envio:</h2>
+        <form action="" [formGroup]="formularioDatosDireccion" class="was-validated">
+            <!-- CALLE -->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control text-primary fw-bold " id="calle" placeholder=" "
+                    formControlName="calle" required>
+                <label for="calle">Calle </label>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- NUMERO -->
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control text-primary fw-bold " id="numero" placeholder=" "
+                            formControlName="numero" name="numero" required>
+                        <label for="numero">Nro </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- PISO -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control text-primary fw-bold " id="piso" placeholder=" "
+                            formControlName="piso" name="piso">
+                        <label for="piso">Piso </label>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <!-- DEPTO -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control text-primary fw-bold text-uppercase " id="depto"
+                            placeholder=" " formControlName="depto" name="depto">
+                        <label for="depto">Depto </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- CODIGO POSTAL -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control text-primary fw-bold " id="codigoPostal" placeholder=" "
+                            formControlName="codigoPostal" name="codigoPostal" required>
+                        <label for="codigoPostal">Codigo postal</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- LOCALIDAD -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control text-primary fw-bold " id="localidad" placeholder=" "
+                            formControlName="localidad" name="localidad" required>
+                        <label for="localidad">Localidad</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <!-- PROVINCIA -->
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control text-primary fw-bold " id="provincia" placeholder=" "
+                        formControlName="provincia" name="provincia" required>
+                    <label for="provincia">Provincia</label>
+                </div>
+            </div>
+            <!-- OBSERVACIONES EXTRAS -->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control text-primary fw-bold " id="observacionesDomicilio"
+                    placeholder=" " formControlName="observacionesDomicilio" name="observacionesDomicilio">
+                <label for="observacionesDomicilio">Observaciones del domicilio</label>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="formularioDatosDireccion.invalid" class="text-danger">
+        Por favor completa todos los campos obligatorios (*) correctamente.
+    </div>
+</div>
+
+<div *ngIf="formularioDatosDireccion.invalid" class="text-danger">
+    Por favor completa todos los campos obligatorios (*) correctamente.
+</div>
+    
+<button mat-button matStepperPrevious class="btn btn-sm btn-secondary mx-2">Anterior</button>
+<button mat-button matStepperNext [disabled]="formularioDatosDireccion.invalid" class="btn btn-sm btn-primary"
+    (click)="enviarDatosDireccion()">Siguiente</button>
+
+

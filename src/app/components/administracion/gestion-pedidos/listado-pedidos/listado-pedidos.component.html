@@ -1,0 +1,48 @@
+<div class="container pt-5 ">
+    <div class="row mb-3 ms-1">
+        <div class="px-0 col col-lg-4 col-xl-4 col-xxl-4">
+            <input name="buscador" class="form-control me-2" type="search"
+                placeholder="Buscar pedido" aria-label="Search">
+        </div>
+        <div class="col ms-0 ps-0">
+            <button class="btn btn-primary" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <table class="table table-striped border border-2 border-dark rounded text-center">
+            <thead class="bg-info">
+                <tr>
+                    <th>Fecha de pedido<br></th>
+                    <th>Monto total<br></th>
+                    <th>Fecha de seña<br></th>
+                    <th>Estado</th>
+                    <th>Fecha envio</th>
+                    <th>Numero de guia/remito</th>
+                    <th>Ver pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of listaPedidos">
+                    <td>{{pedido.fechaPedido}}</td>
+                    <td>{{pedido.montoTotal}}</td>
+                    <td>{{pedido.fechaSena}}</td>
+                    <td>{{pedido.estado}}</td>
+                    <td>{{pedido.fechaEnvio}}</td>
+                    <td>{{pedido.numeroGuia}}</td>
+                    <td><a data-bs-toggle="modal" data-bs-target="#exampleModal" class="color-primary" href="/"   onclick="event.preventDefault()" (click)=abrirModal(pedido)><i class="fa-solid fa-eye"></i></a></td>
+
+
+
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+    <app-modal-pedido></app-modal-pedido>
+    

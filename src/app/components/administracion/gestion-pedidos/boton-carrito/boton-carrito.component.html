@@ -1,0 +1,14 @@
+<button 
+*ngIf="mostrarBoton!=0"
+type="button" 
+class="btn botonCarrito" 
+[routerLink]="['/verCarrito']"
+>
+<img src="../../../../assets/carrito.png" width="50px" alt="">
+<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+{{cantidades}}
+</span>
+
+</button>
+
+

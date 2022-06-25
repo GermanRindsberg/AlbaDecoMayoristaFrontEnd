@@ -1,0 +1,13 @@
+<h4 class="mt-4 mb-3 text-center">Agregar aqui las fotos</h4>
+<div class="row">
+    <button class="btn btn-primary mt-3" onclick="document.getElementById('inputFoto').click()">Agregar Fotos</button>
+</div>
+<input type="file" accept="image/*" class=" d-none" id="inputFoto" name="fotoPerfil" (change)="onSelect($event)">
+
+<div class="row cargaImagenes py-3" [sortablejs]="archivoFotos" [sortablejsOptions]="opcionesSortable">
+        <div class="col-1 mx-2 my-3 border border-1 border-dark rounded  contenedorFoto position-relative text-center" *ngFor="let direccionFoto of archivoFotos">
+            <img class="imagenProducto  position-absolute top-50 start-50 translate-middle"   src="{{direccionFoto.direccionImage}}">
+            <i class="fa-solid fa-xmark fs-5 cruz position-absolute top-0 end-0 me-2" (click)="onRemove(direccionFoto)"></i>
+        </div>
+</div>
+

@@ -1,0 +1,16 @@
+
+img:hover{
+	opacity: .8;
+	cursor: pointer;
+}
+
+.fotoAbajo{
+	max-height: 100px;
+	width: 100px;
+	
+}
+
+h5{
+	font-family: Moonflower;
+	font-size: 25pt;
+}

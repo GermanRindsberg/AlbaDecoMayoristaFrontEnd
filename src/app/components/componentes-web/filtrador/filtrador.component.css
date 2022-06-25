@@ -1,0 +1,9 @@
+span{
+    cursor: pointer !important;
+}
+span:hover {
+    color:brown;
+  }
+.contenedorFiltro{
+    max-height: 25px;
+}

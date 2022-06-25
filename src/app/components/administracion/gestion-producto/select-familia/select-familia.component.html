@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col">
+    <div class="form-floating mb-4 ">
+      <input type="text" class="form-control text-primary fw-bold text-capitalize " disabled id="nombreFamilia"
+        placeholder=" " [(ngModel)]="nombreFamilia" name="nombreFamilia" required>
+      <label for="capacidad"> Categoria </label>
+    </div>
+
+    <div class="dropdown my-2">
+      <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Selecciona una Categoria
+      </button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+        <li *ngFor="let familia of listaFamilia" class="text-capitalize ">
+          <div class="row">
+            <div class="col-9 text-start  ">
+              <a href="" class="dropdown-item text-capitalize" onclick="event.preventDefault()"
+                (click)="seleccionarFamilia(familia.nombre, familia.id)"> {{ familia.nombre }}</a>
+            </div>
+            <div class="col text-end pt-1 pe-3">
+              <a href="" onclick="event.preventDefault()" (click)="eliminarFamilia(familia.id)"><i
+
+                  class="fa-solid fa-trash-can" style="color: red;"></i></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <hr class="dropdown-divider mb-4">
+        </li>
+        <li class="text-center"><button class="
+          btn-primary 
+          fixed-bottom  " data-bs-toggle="modal" data-bs-target="#modalFamilia"> + Categoria</button></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="col">
+
+    <div class="form-floating mb-4 ">
+      <input type="text" class="form-control text-primary fw-bold text-capitalize " disabled id="nombreSubCategoria"
+        placeholder=" " [(ngModel)]="nombreSubCategoria" name="nombreSubCategoria" required>
+      <label for="capacidad"> Subategoria </label>
+    </div>
+
+
+    <!-- SUBCATEGORIA -->
+
+    <div class="dropdown my-2">
+      <button class="btn btn-primary  dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+        aria-expanded="false" [disabled]="!nombreFamilia">Selecciona una SubCategoria</button>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+        <li *ngFor="let subCategoria of listaSubcategorias" class="text-capitalize ">
+          <div class="row">
+            <div class="col-9 text-start">
+              <a href="" class="dropdown-item text-capitalize" onclick="event.preventDefault()"
+                (click)="seleccionarSubcategoria(subCategoria.nombre, subCategoria.id)"> {{ subCategoria.nombre }}</a>
+            </div>
+            <div class="col text-end pt-1 pe-3">
+              <a href="" onclick="event.preventDefault()" (click)="eliminarSubcategoria(subCategoria.id)"><i
+                  class="fa-solid fa-trash-can" style="color: red;"></i></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <hr class="dropdown-divider mb-4">
+        </li>
+        <li class="text-center"><button class="
+          btn-primary 
+          fixed-bottom  " data-bs-toggle="modal" data-bs-target="#modalSubCategoria"> + SubCategoria</button></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- VARIANTES -->
+  <div class="col">
+    <div class="row  my-0 pt-0 border border-2 rounded fondoPersonalizado" >
+      <p class="text-start my-0 py-0">Variantes de color</p>
+      <div class="col-12">
+        <div class="row">
+        <div class="col-1 mx-1 circulito position-relative border border-3 " *ngFor="let color of listaVariantes"
+          style="background-color: {{color}};">
+          <span class="position-absolute top-0 start-100 translate-middle rounded-circle">
+            <a href="" onclick="event.preventDefault()" (click)="eliminarVariante(color)"><i
+                class="fa-solid fa-xmark"></i></a>
+          </span>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn dropdown-toggle my-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Seleccionar variantes de colores
+    </button>
+
+    <ul class="dropdown-menu">
+      <color-swatches (onChangeComplete)="agregarVariante($event)"></color-swatches>
+    </ul>
+
+
+  </div>
+
+
+  
+
+
+  <app-modal-familia (eventoCargaCategoria)="ngOnInit()"></app-modal-familia>
+  <app-modal-subcategoria [idCategoria]=idCategoria (eventoCargaSubCategoria)="ngOnInit()"></app-modal-subcategoria>

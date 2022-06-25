@@ -1,0 +1,57 @@
+<div class="container position-relative">
+    
+<!-- BUSCADOR -->
+<div class="container">
+    <div class="row mb-3 ms-1">
+        <div class="px-0 col-8">
+            <input [(ngModel)]="buscador"  name="buscador" class="form-control me-2" type="search"
+                placeholder="Buscar producto" aria-label="Search">
+        </div>
+    </div>
+</div>
+
+<!-- TABLA PRODUCTOS -->
+        <table class="table table-striped border border-2 border-dark rounded text-center  ">
+            <thead class="bg-info">
+                <tr>
+                    <th class="align-middle">Fotos</th>
+                    <th class="align-middle">Nombre</th>
+                    <th class="align-middle">Precio</th>
+                    <th class="align-middle">Editar</th>
+                    <th class="align-middle">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- <tr *ngFor="let producto of listaProductos | buscadorProductos:buscador"> -->
+                <tr *ngFor="let producto of listaProductos">
+                        <td>
+                            <img class="img-thumbnail fotosProducto" *ngFor="let foto of producto.fotos |orderBy: 'posicion'" src="http://127.0.0.1:5000/static/files/{{foto.direccionImage}}"> 
+                        </td>
+                        <td>
+                            {{producto.nombre}}
+                        </td>
+                        <td>
+                            {{producto.precio}}
+                        </td>
+                     <td>
+                            <div class="btn" (click)="editarProducto(producto.id)"><i class="fa-solid fa-pen-to-square"></i></div>
+                     </td>
+                     <td>
+                            <div class="btn borrarProducto" (click)="borrarProducto(producto.id)"><i class="fa-solid fa-trash"></i></div>
+                     </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+
+<div class="position-absolute top-0 end-0 translate-middle pt-4">
+    
+    <button class="btn btn-lg btn-success rounded-circle" 
+    data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar producto" [routerLink]="['../productoNuevo']"
+    ><i class="fa-solid fa-plus"></i></button>
+</div>
+</div>
+
+

@@ -1,0 +1,92 @@
+<div class="row  pt-3">
+  <div class="col d-none d-sm-block">
+
+  </div>
+  <div class="col col-xs-12 ">
+    <div class="container ">
+<!-- LOGO ALBA -->
+      <div class="row text-center">
+        <a href=""><img src="../../../assets/logo.png" width="200px" alt="Sample image"
+            [routerLink]='["/principal"]'></a>
+      </div>
+
+      <div class="row ">
+<!-- INICIAR SESION CON REDES SOCIALES -->
+        <div class=" text-end">
+          <p class="lead mb-0 "><b> Inicia sesión con</b> </p>
+          <button type="button" (click)="loginWithFacebook()" class="btn btn-primary btn-floating mx-1">
+            <i class="fa-brands fa-facebook"></i>
+          </button>
+          <button type="button" (click)="signInWithGoogle()" class="btn btn-success btn-floating mx-1">
+            <i class="fa-brands fa-google"></i>
+          </button>
+        </div>
+
+        <div class="row mt-3 mb-3">
+          <div class="col">
+            <hr>
+          </div>
+          <div class="col-auto mt-1 fw-bold">O</div>
+          <div class="col">
+            <hr>
+          </div>
+        </div>
+
+        <!-- Email input -->
+        <div class="container-fluid">
+
+          <label class="form-label" for="form3Example3">Dirección de correo electrónico</label>
+          <input type="email" id="form3Example3" class="form-control form-control-lg" placeholder="Tu E-mail" [(ngModel)]='mail' name='mail' required />
+        </div>
+
+
+        <!-- Password input -->
+
+        <label class="form-label" for="form3Example4">Contraseña</label>
+
+        <div class="container-fluid text-end mb-3">
+          <div class="row">
+            <div class="col-9 me-0 pe-0">
+              <input  class="form-control form-control-lg" 
+              placeholder="Tu contraseña"[type]="show ? 'text' : 'password'" [(ngModel)]='password' name='password' required />
+            </div>
+            <div class="col">
+              <button class="btn btn-primary btn-lg" (click)="mostrarPass()"><i class="fa-solid fa-eye-slash"></i>
+              </button>
+              <!-- <button class="btn btn-primary btn-lg" type="button"(click)="pass()">
+               
+              </button>{{show ? 'Show' : 'Hide'}}>
+                 -->
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!-- Checkbox -->
+          <div class="col ">
+            <div class="form-check ">
+              <input class="form-check-input me-2" [(ngModel)]='recordar' name='recordar'  type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label me-4" for="form2Example3">
+                Recuérdame
+              </label>
+            </div>
+          </div>
+          <div class="col text-end">
+            <a href="#!" class="">¿Olvidó su contraseña?</a>
+          </div>
+        </div>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <button type="submit" class="btn btn-primary btn-lg" (click)="iniciar()" >Iniciar Sesión</button>
+          <p class="small fw-bold mt-2 pt-1 mb-0">¿No tiene cuenta? <a href="" [routerLink]="['../registro']"
+              class="link-primary">Regístrese aquí</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col d-none d-sm-block">
+  </div>
+</div>

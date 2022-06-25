@@ -1,0 +1,10 @@
+
+.circulito{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  ::ng-deep .mat-vertical-stepper-header {
+    pointer-events: none !important;
+}

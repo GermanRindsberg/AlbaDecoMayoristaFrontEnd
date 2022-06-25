@@ -1,0 +1,55 @@
+<div class="row">
+    <h2>Tus datos:</h2>
+    <form action="" [formGroup]="formularioDatos" class="was-validated">
+
+        <!-- E-MAIL -->
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control is-invalid text-primary fw-bold text-lowercase" placeholder=" " name="email"
+                id="email" formControlName="email" required >
+            <label for="email">E-mail(*)</label>
+        </div>
+
+         <!-- NOMBRE -->
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control text-primary fw-bold " id="nombre" placeholder=" " formControlName="nombre" required>
+        <label for="nombre">Nombre(*)</label>
+    </div>
+    
+    <!-- APELLIDO -->
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control text-primary fw-bold " id="apellido" placeholder=" " formControlName="apellido" required>
+        <label for="apellido">Apellido(*)</label>
+    </div>
+
+    <!-- DNI -->
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control text-primary fw-bold " id="dni" placeholder=" " formControlName="dni" name="dni" required>
+        <label for="dni">Dni(*)</label>
+    </div>
+    <!-- CUIT   -->
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control text-primary fw-bold " id="cuit" placeholder=" " formControlName="cuit" >
+        <label for="cuit">CUIT</label>
+    </div>
+
+    <!-- CELULAR -->
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control text-primary fw-bold " id="celular" placeholder=" "formControlName="celular" required>
+        <label for="celular">Celular(*)</label>
+    </div>
+
+    <!-- TELEFONO -->
+    <div class="form-floating mb-3">
+        <input type="number" class="form-control text-primary fw-bold " id="telefono" placeholder=" " formControlName="telefono">
+        <label for="telefono">Telefono</label>
+    </div>
+
+    </form>
+</div>
+
+<div *ngIf="formularioDatos.invalid" class="text-danger">
+    Por favor completa todos los campos obligatorios (*) correctamente.
+</div>
+<button mat-button matStepperPrevious class="btn btn-sm btn-secondary mx-2">Anterior</button>
+
+<button mat-button matStepperNext [disabled]="formularioDatos.invalid" class="btn btn-sm btn-primary" (click)="enviarDatosPersonales()" >Siguiente</button>

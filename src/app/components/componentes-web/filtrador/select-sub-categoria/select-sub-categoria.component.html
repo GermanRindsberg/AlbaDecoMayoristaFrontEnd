@@ -1,0 +1,9 @@
+<select 
+[(ngModel)]="selectInfo" 
+(ngModelChange)="filtrarSubCategoria($event)" 
+class="form-select" 
+aria-label="Default select example">
+    <option value="" selected >Selecciona una subCategoria</option>
+    <option *ngFor="let item of listaProductos" [value]="item">{{item}}
+    </option>
+  </select>

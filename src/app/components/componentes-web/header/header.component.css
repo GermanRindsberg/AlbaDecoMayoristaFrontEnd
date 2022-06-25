@@ -1,0 +1,13 @@
+
+.titulo{
+    font-family: moonFlower;
+    font-size: 45px;
+}
+
+.imagenProducto{
+    max-height: 250px;
+    max-width: 250px;
+    overflow: hidden;
+    border-radius: 30px;
+    cursor: pointer;
+}       

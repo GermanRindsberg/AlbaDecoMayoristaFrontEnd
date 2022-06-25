@@ -1,0 +1,83 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" 
+data-bs-scroll="true" 
+data-bs-backdrop="false"
+id="detalle" 
+aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header text-center">
+    <h5 class="offcanvas-title " id="offcanvasExampleLabel"><b> {{productoRecibido.nombre}}</b></h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div>
+
+      <div class="row">
+
+        <div class="col-8">
+          <p>{{productoRecibido['descripcion']}}</p>
+        </div>
+        <div class="col">
+          <img src="http://127.0.0.1:5000/static/files/{{fotoRecibida}}" class="w-75 rounded-3" alt="">
+        </div>
+
+      </div>
+
+
+      <div class="row mt-3">
+        <div class="col border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Alto:<b>{{productoRecibido['alto']}} cm </b></label>
+        </div>
+        <div class="col   border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Ancho:<b> {{productoRecibido['ancho']}} cm </b></label>
+        </div>
+        <div class="col border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Largo:<b> {{productoRecibido['largo']}} cm </b></label>
+        </div>
+      </div>
+
+
+      <div class="row fs-6">
+        <div class="col m-2  border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Capacidad:<br><b>{{productoRecibido.capacidad}} ml </b></label>
+        </div>
+        <div class="col m-2  border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Categoria: <br><b> {{categoriaRecibida}}</b></label>
+        </div>
+        <div class="col m-2  border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Sub categoria: <br><b> {{subCategoriaRecibida}}</b></label>
+        </div>
+
+      </div>
+
+
+
+      <div class="row fs-6">
+        <div class="col m-2 border border-2 rounded-3 p-2 text-center">
+          <label for="" class="p-2"> Variantes disponibles: </label>
+          <br>
+          <div class="row justify-content-center" *ngFor="let elemento of variantesRecibidas">
+            <div class="col-1 circulito ms-5 my-1" style="background-color: {{elemento['color']}};">
+            </div>
+            <div class="col my-2">
+              
+              <input type="number"  name="" (keyup)="modificaCantidades($event, elemento)"  min="0" id="" placeholder="Cantidad">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row border">
+        <label for="" class="text-center  p-2"> <b> Precio por unidad:<b class="text-success precio"> ${{productoRecibido['precio']}}</b></b></label>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col text-center">
+          <button class="btn btn-primary" (click)="agregarProducto()" data-bs-dismiss="offcanvas">Agregar al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>

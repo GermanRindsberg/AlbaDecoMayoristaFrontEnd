@@ -1,0 +1,105 @@
+<div class="container border rounded-4 mx-0 px-0">
+    
+    <mat-vertical-stepper [linear]="true" >
+
+        <mat-step label="Controla tu pedido">
+
+            <div class="row justify-content-center border rounded-3 border-2 border-primary my-2"
+                *ngFor="let producto of productos">
+
+                <div class="row">
+                    <div class="col-4  align-self-center me-3 rounded"><img
+                            src="http://127.0.0.1:5000/static/files/{{producto.producto.fotos[0].direccionImage}}"
+                            width="90px" alt=""></div>
+                    <div class="col text-start fs-6 mx-0 px-0">
+                        <div class="row">
+                            <b>{{producto.producto.nombre}}</b>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col align-self-center me-0"><b>Variante:</b></div>
+                            <div class="col align-self-center text-start mx-0 px-0">
+                                <div class="circulito" style="background-color: {{producto.variante.color}};"></div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2 pb-3 text-center fs-6 mb-0 pb-0">
+                            <div class="col ">
+                                Cantidad
+                                <div class="row justify-content-center text-center">
+                                    <div class="col-4 text-end px-0 ">
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="restarCantidad(producto.variante.id)">-</button>
+                                    </div>
+                                    <div class="col px-0 ">
+                                        <label for="">{{producto.cantidad}}</label>
+                                    </div>
+                                    <div class="col-4 text-start px-0 ">
+                                        <button class="btn btn-sm btn-primary"
+                                            (click)="sumarCantidad(producto.variante.id)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col  align-self-end text-end">
+                                <button class="btn btn-sm btn-danger" (click)="borrarProducto(producto.variante.id)"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="row text-end">
+                    <label for=""><b> Precio Unitario:</b> ${{producto.producto.precio}}</label>
+                    <hr>
+                    <label for=""><b> Sub-total:</b> ${{producto.producto.precio*producto.cantidad}}</label>
+                </div>
+
+            </div>
+
+            <p class="fs-3 text-end mt-3"> Sub-Total:<b class="text-primary"> ${{subTotal}}</b></p>
+            <p class="fs-3 text-end mt-3"> Descuento:<b class="text-primary"> ${{descuento}}</b></p>
+            <p class="fs-3 text-end mt-3"> Total del pedido:<b class="text-primary"> ${{subTotal-descuento}}</b></p>
+
+            <button mat-button matStepperNext class="btn btn-sm btn-primary mx-2 mt-2">Siguiente</button>
+
+        </mat-step>
+
+        <mat-step label="Verifica tus datos personales"  >
+            <app-matselect-datos-personales  (eventoEmit)="datosUsuario=$event"></app-matselect-datos-personales>
+        </mat-step>
+
+        <mat-step label="Verifica tu direccion o sucursal de envio">
+            
+            <app-matselect-direccion></app-matselect-direccion>
+
+        </mat-step>
+
+        <mat-step label="Pasos a seguir">
+
+            <app-matselect-pasos></app-matselect-pasos>
+
+            <button mat-button matStepperPrevious class="btn btn-sm btn-secondary mx-2">Anterior</button>
+            <button mat-button matStepperNext class="btn btn-sm btn-primary">Siguiente</button>
+            
+        </mat-step>
+
+        <mat-step  label="Realizar pedido">
+        <h1 *ngIf="banderaPedido==1">¡Gracias por tu compra!</h1>
+        <p *ngIf="banderaPedido==1">
+            Enviamos a tu casilla de e-mail un mensaje con los
+             datos de este pedido adjuntando el numero de cuenta bancaria asi depositas el 
+             50% del monto total para que comencemos con tu pedido.
+        </p>
+        <p *ngIf="banderaPedido==1">
+            Si lo deseas puedes ver este pedido y/o los anteriores haciendo click <a href="/" [routerLink]="['/verMisPedidos']">Aqui</a>
+        </p>
+       
+        <button  *ngIf="banderaPedido==0"  class="btn  btn-lg btn-success"  (click)="realizarPedido()">Realizar pedido</button>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>

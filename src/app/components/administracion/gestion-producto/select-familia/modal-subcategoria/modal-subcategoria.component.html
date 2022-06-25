@@ -1,0 +1,24 @@
+
+<div class="modal fade" id="modalSubCategoria" tabindex="-1" aria-labelledby="modalSubCategoria" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agrega una Subcategoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control text-primary fw-bold text-capitalize "  placeholder=" " [(ngModel)]="nombreSubCategoria" name="nombreSubCategoria"
+                    required>
+                <label for="familia"> Sub-categoria nueva </label>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="guardarSubCategoria()" data-bs-dismiss="modal">Guardar Sub-Categoria</button>
+        </div>
+      </div>
+    </div>
+  </div>
