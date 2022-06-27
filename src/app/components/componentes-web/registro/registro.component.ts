@@ -59,11 +59,9 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
 
     if (sessionStorage.getItem('idUsuario') != null) {
-      let datos;
-      var idUsuario: any = sessionStorage.getItem('idUsuario');
-      this.servicio.getUsuariosId(idUsuario).subscribe(
+      this.servicio.getUsuariosId().subscribe(
         (response: any) => {
-          
+          console.log(response)
           //#region Datos Usuario
           this.email = response.email
           this.nombre = response.perfil.nombre;
@@ -86,6 +84,7 @@ export class RegistroComponent implements OnInit {
         })
     }
   }
+ 
   public handleAddressChange(address: Address) {
     if (address.address_components.length > 5) {
       this.calle = address.address_components[1].long_name
@@ -142,9 +141,7 @@ export class RegistroComponent implements OnInit {
         )}
 
       else {
-        var idUsuario: any = sessionStorage.getItem('idUsuario');
-        console.log(this.formularioRegistro)
-        this.servicio.patchUsuariosId(idUsuario, this.formularioRegistro).subscribe(
+        this.servicio.patchUsuariosId(this.formularioRegistro).subscribe(
           (response: any) => {
             this.router.navigate(['']);
             console.log(response)
@@ -178,7 +175,6 @@ export class RegistroComponent implements OnInit {
 
   }
 
-
   eliminarUsuario() {
     Swal.fire({
       title: '¿Estas seguro de eliminar tu cuenta?',
@@ -192,9 +188,7 @@ export class RegistroComponent implements OnInit {
     }).then((result) => {
 
       if (result.isConfirmed) {
-
-        var idUsuario: any = sessionStorage.getItem('idUsuario');
-        this.servicio.deleteUsuario(idUsuario).subscribe(
+        this.servicio.deleteUsuario().subscribe(
           (response: any) => {
             console.log(response)
             Swal.fire(

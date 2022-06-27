@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialAuthService } from 'angularx-social-login';
+import { CookieService } from 'ngx-cookie-service';
 import { UsuarioService } from 'src/app/services/usuario/usuario-service.service';
 import Swal from 'sweetalert2';
 
@@ -17,13 +18,13 @@ export class BotonUserComponent implements OnInit {
   constructor(
     private socialAuthService: SocialAuthService,
     private router: Router,
-    private servicioUsuario:UsuarioService
+    private servicioUsuario:UsuarioService,
+    private cookieService: CookieService
     ) { }
 
   ngOnInit(): void {
     
     this.servicioUsuario.disparadorLogin.subscribe(data=>{
-      console.log(data)
       if(data.tipoUsuario=="admin"){
         this.admin=true;
       }
@@ -76,6 +77,7 @@ export class BotonUserComponent implements OnInit {
     localStorage.removeItem('nombreUsuario');
     localStorage.removeItem('idUsuario');
     localStorage.removeItem('emailUsuario');
+    this.cookieService.delete('albaCookie')
     this.socialAuthService.signOut();
     this.router.navigate([''])
     this.ngOnInit()

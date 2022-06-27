@@ -30,7 +30,7 @@ export class TablaUsuariosComponent implements OnInit {
       var data=  {
       tipoUsuario:tipoUsuario
     }
-    this.servicioUsuario.patchUsuariosId(idUsuario,data).subscribe(
+    this.servicioUsuario.patchUsuariosId(data).subscribe(
       (response: any) => {
         console.log(response)
       })

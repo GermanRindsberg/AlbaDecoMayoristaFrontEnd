@@ -1,7 +1,10 @@
 import { Injectable, Output } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -10,55 +13,72 @@ import { EventEmitter } from '@angular/core';
 export class UsuarioService {
   @Output() disparadorModal: EventEmitter<any>  = new EventEmitter();
   @Output() disparadorLogin: EventEmitter<any>  = new EventEmitter();
-
-  private api_usuarios="http://127.0.0.1:5000/api/usuarios";
-  private token: string;
-
+  
   
   constructor(
-    private http: HttpClient
-
+    private http: HttpClient, 
+    private cookieService:CookieService, 
+    private router: Router,
   ) { }
+  private api_usuarios="http://127.0.0.1:5000/api/usuarios";
+  private token = this.cookieService.get('albaCookie');
 
+  private header = new HttpHeaders({ 
+  "Content-Type": "application/json", 
+  'Authorization': 'Bearer ' + this.token });
+   
   
-  public estaAutenticado(): boolean {
-    return sessionStorage.getItem('nombreUsuario') != null;
-  }
-
-  public getToken(): string {
-    return this.token;
-  }
-
-  public setToken(token: string) {
-    this.token = token;
-  }
 
   public getAllUsuarios(): Observable<any>{
-    return this.http.get(this.api_usuarios);
+    return this.http.get(this.api_usuarios, {headers : this.header});
   }
   
-  public getUsuariosId(id:number): Observable<any>{
-    return this.http.get(this.api_usuarios+"/"+id);
+  public getUsuariosId(): Observable<any>{
+    return this.http.post(this.api_usuarios +"/usuario",'', {headers : this.header});
   }
 
-
-  public patchUsuariosId(id:number, data:any): Observable<any>{
-    return this.http.patch(this.api_usuarios+"/"+id, data);
+  public patchUsuariosId(data:any): Observable<any>{
+    return this.http.patch(this.api_usuarios+"/usuario", data, {headers : this.header});
   }
 
   public postUsuario(data:any): Observable<any>{
-    
     return this.http.post(this.api_usuarios, data);
+  }
+
+  public deleteUsuario(): Observable<any>{
+    return this.http.delete(this.api_usuarios+"/usuario", {headers : this.header});
+  }
+
+  public verificarLogin(data:any, recordar:boolean, rutaOrigen){
+    return this.http.post(this.api_usuarios + "/token", data).subscribe((response:any)=>{
     
+      if(response['msg'])
+          {
+              Swal.fire({
+              title: 'Error', 
+              text: response['msg'], 
+              icon: 'error',
+            })
+          }
+        else{
+          let nombreUsuario = response.usuario.perfil.nombre;
+          let idUsuario = response.usuario.id;
+          sessionStorage.setItem('nombreUsuario', nombreUsuario);
+          sessionStorage.setItem('idUsuario', idUsuario);
+          this.cookieService.set('albaCookie', response.token)
+          if(recordar==true)
+          {
+            localStorage.setItem('nombreUsuario', nombreUsuario);
+            localStorage.setItem('idUsuario', idUsuario);
+            localStorage.setItem('emailUsuario', response.usuario.email);
+            localStorage.setItem('password', data.password);
+            
+          }
+          this.router.navigate([rutaOrigen]);
+        }
+    });
   }
 
-  public deleteUsuario(id:number): Observable<any>{
-    return this.http.delete(this.api_usuarios+"/"+id);
-  }
-
-  verificarLogin(data:any){
-    return this.http.post(this.api_usuarios + "/token", data);
-  }
 
 
 }

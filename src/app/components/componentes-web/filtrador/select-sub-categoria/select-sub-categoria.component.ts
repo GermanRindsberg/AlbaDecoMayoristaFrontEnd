@@ -17,7 +17,6 @@ export class SelectSubCategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicioProducto.getAllProductos().subscribe(data=>{
-      console.log(data)
       var listaSinFiltrar=[]
       for (let i = 0; i < data.length; i++) {
          listaSinFiltrar.push(data[i].subCategoria.nombre)  

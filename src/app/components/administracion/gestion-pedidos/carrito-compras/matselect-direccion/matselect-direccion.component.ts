@@ -15,7 +15,7 @@ export class MatselectDireccionComponent implements OnInit {
   constructor(private servicioUsuario: UsuarioService, private servicioPedido:PedidoService) { }
 
   ngOnInit(): void {
-    this.servicioUsuario.getUsuariosId(JSON.parse(sessionStorage.getItem('idUsuario')!)).subscribe(data=>{
+    this.servicioUsuario.getUsuariosId().subscribe(data=>{
       
       this.formularioDatosDireccion.controls['calle'].setValue(data.direccion.calle)
       this.formularioDatosDireccion.controls['numero'].setValue(data.direccion.numero)

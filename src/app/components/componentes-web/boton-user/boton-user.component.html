@@ -9,9 +9,9 @@
             <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="botonLogin">
                 <li><a class="dropdown-item" *ngIf="!usuario" [routerLink]="['/login']">Ingresar</a></li>
                 <li><a class="dropdown-item" *ngIf="usuario" href="#" onclick="event.preventDefault()" (click)="signOut()">Salir</a></li>
-                <li><a class="dropdown-item" href="" [routerLink]="['../registro']">Mi perfil</a></li>
-                <li><a class="dropdown-item" href="" [routerLink]="['../verMisPedidos']">Mis pedidos</a></li>
-                <li><a class="dropdown-item" href="" [routerLink]="['../administracion']">Administracion</a></li>
+                <li><a class="dropdown-item" *ngIf="usuario"  href="" [routerLink]="['../registro']">Mi perfil</a></li>
+                <li><a class="dropdown-item" *ngIf="usuario" href="" [routerLink]="['../verMisPedidos']">Mis pedidos</a></li>
+                <li><a class="dropdown-item" *ngIf="admin" href="" [routerLink]="['../administracion']">Administracion</a></li>
             </ul>
         </div>
     <!-- FIN BOTON LOGIN -->

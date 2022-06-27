@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class BuscadorPedidosPipe implements PipeTransform {
 
 
-  transform(value: any[], args: any):any {
+  transform(value: any[]=[], args: any):any {
     const resultPedido=[];
     for (const pedido of value){
       if (pedido.usuario.perfil.nombre.toLowerCase().indexOf(args.toLowerCase())>-1 ||
