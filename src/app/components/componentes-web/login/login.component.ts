@@ -98,7 +98,6 @@ export class LoginComponent implements OnInit {
       }
       this.servicioUsuario.verificarLogin(dataLogin, this.recordar, this.returnUrl)
     }
-
     catch (error) {
       console.log(error)
     }

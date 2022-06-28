@@ -65,19 +65,10 @@ export class UsuarioService {
             })
           }
         else{
-          let nombreUsuario = response.usuario.perfil.nombre;
-          let idUsuario = response.usuario.id;
-          sessionStorage.setItem('idUsuario', idUsuario);
-          this.cookieService.set('albaCookie', response.token)
-          if(recordar==true)
-          {
-            localStorage.setItem('nombreUsuario', nombreUsuario);
-            localStorage.setItem('idUsuario', idUsuario);
-            localStorage.setItem('emailUsuario', response.usuario.email);
-            localStorage.setItem('password', data.password);
-            
-          }
-          this.router.navigate([rutaOrigen]);
+            this.cookieService.set('albaCookie', response.token)
+            sessionStorage.setItem('idUsuario', response.usuario.id);
+            this.disparadorLogin.emit(response.usuario);
+            this.router.navigate([rutaOrigen]);
         }
     });
   }
