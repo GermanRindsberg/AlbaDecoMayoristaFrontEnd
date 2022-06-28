@@ -49,6 +49,7 @@ import { SelectCategoriaComponent } from './components/componentes-web/filtrador
 import { SelectSubCategoriaComponent } from './components/componentes-web/filtrador/select-sub-categoria/select-sub-categoria.component';
 import { FiltradorComponent } from './components/componentes-web/filtrador/filtrador.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ModalDetallePedidosComponent } from './components/administracion/gestion-usuarios/modal-detalle-pedidos/modal-detalle-pedidos/modal-detalle-pedidos.component';
 
 
 
@@ -90,6 +91,7 @@ import { CookieService } from 'ngx-cookie-service';
     SelectCategoriaComponent,
     SelectSubCategoriaComponent,
     FiltradorComponent,
+    ModalDetallePedidosComponent
   ],
   imports: [
     BrowserModule,
@@ -120,7 +122,7 @@ import { CookieService } from 'ngx-cookie-service';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '1077106997457-2s3ev06cmfd0kh9qr2v26sdpdloh898e.apps.googleusercontent.com'
+              '1077106997457-h29p9udk59br3t2csln1kivvj2g828nc.apps.googleusercontent.com'
             )
           }
         ]

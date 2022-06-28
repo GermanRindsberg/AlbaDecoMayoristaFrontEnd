@@ -1,11 +1,11 @@
 <div class="container pt-5 ">
     <div class="row mb-3 ms-1">
         <div class="px-0 col col-lg-4 col-xl-4 col-xxl-4">
-            <input [(ngModel)]="buscador"  name="buscador" class="form-control me-2" type="search"
+            <input [(ngModel)]="buscador" name="buscador" class="form-control me-2" type="search"
                 placeholder="Buscar Usuario" aria-label="Search">
         </div>
         <div class="col ms-0 ps-0">
-            <button class="btn btn-primary" ><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </div>
 </div>
@@ -33,17 +33,17 @@
                     </td>
                     <td>
                         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever="usuario.id"
-                            onclick="event.preventDefault()" (click)=abrirModal(usuario)> 
-                             <i class="fa-solid fa-magnifying-glass"></i></a>
-                         
-                      
+                            onclick="event.preventDefault()" (click)=abrirModalUsuario(usuario)>
+                            <i class="fa-solid fa-magnifying-glass"></i></a>
+
+
                     </td>
                     <td>
-                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever="usuario.id"
-                            onclick="event.preventDefault()" (click)=abrirModal(usuario)> 
+                        <a href="" data-bs-toggle="modal" data-bs-target="#modalPedidos" data-whatever="usuario.id"
+                            onclick="event.preventDefault()" (click)=abrirModalPedido(usuario)>
                             <i class="fa-solid fa-handshake"></i></a>
-                         
-                      
+
+
                     </td>
 
                 </tr>
@@ -54,5 +54,5 @@
 
 </div>
 
-    <app-modal-detalle-usuario></app-modal-detalle-usuario>
-    
+<app-modal-detalle-usuario></app-modal-detalle-usuario>
+<app-modal-detalle-pedidos></app-modal-detalle-pedidos>

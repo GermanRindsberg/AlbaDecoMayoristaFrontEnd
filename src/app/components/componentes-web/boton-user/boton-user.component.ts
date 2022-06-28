@@ -12,9 +12,10 @@ import Swal from 'sweetalert2';
 })
 export class BotonUserComponent implements OnInit {
 
-  usuario:string;
-  mostrar:boolean=false;
+  usuario:any='';
+  mostrar:boolean=false;//muestra hola "nombre"
   admin:boolean=false
+  idUsuario:any=''
   constructor(
     private socialAuthService: SocialAuthService,
     private router: Router,
@@ -25,28 +26,23 @@ export class BotonUserComponent implements OnInit {
   ngOnInit(): void {
     
     this.servicioUsuario.disparadorLogin.subscribe(data=>{
+      if (data!=null){
+      this.usuario=data.perfil.nombre
+      this.mostrar=true
       if(data.tipoUsuario=="admin"){
-        this.admin=true;
+        this.admin=true
       }
-      this.ngOnInit()
+    }
     })
-
-    let nombreSesion = sessionStorage.getItem('nombreUsuario');
-    let nombreLocal = localStorage.getItem('nombreUsuario');
-    this.mostrar=false
-
-    if(nombreLocal!=null)
-    {
-      this.usuario = nombreLocal;
-      sessionStorage.setItem('emailUsuario', localStorage.getItem('emailUsuario') || '{}')
-      sessionStorage.setItem('idUsuario', localStorage.getItem('idUsuario') || '{}')
-      sessionStorage.setItem('nombreUsuario', localStorage.getItem('nombreUsuario') || '{}')
-      this.mostrar=true;
-    }
-    if (nombreSesion != null){
-      this.usuario = nombreSesion;
-      this.mostrar=true;
-    }
+    if(this.cookieService.get('albaCookie')){
+    this.servicioUsuario.getUsuariosId().subscribe(response=>{
+      this.usuario=response.perfil.nombre
+      this.mostrar=true
+      if(response.tipoUsuario=="admin"){
+        this.admin=true
+      }
+    })
+  }
 
   }
 
@@ -61,27 +57,20 @@ export class BotonUserComponent implements OnInit {
       if (result.isConfirmed) {
         this.salir();
       } else {
-        
       }
-
-
     })
   }
 
   salir(){
     this.mostrar=false
     this.usuario=null
-    sessionStorage.removeItem('nombreUsuario');
     sessionStorage.removeItem('idUsuario');
-    sessionStorage.removeItem('emailUsuario');
-    localStorage.removeItem('nombreUsuario');
-    localStorage.removeItem('idUsuario');
-    localStorage.removeItem('emailUsuario');
-    this.cookieService.delete('albaCookie')
+    this.cookieService.delete('albaCookie');
     this.socialAuthService.signOut();
-    this.router.navigate([''])
-    this.ngOnInit()
-
+    this.admin=false
+    this.servicioUsuario.disparadorLogin.emit()
+    this.router.navigate(['login'])
+    this.socialAuthService.signOut();
   }
 }
 

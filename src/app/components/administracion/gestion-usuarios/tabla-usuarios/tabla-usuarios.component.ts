@@ -30,14 +30,17 @@ export class TablaUsuariosComponent implements OnInit {
       var data=  {
       tipoUsuario:tipoUsuario
     }
-    this.servicioUsuario.patchUsuariosId(data).subscribe(
+    this.servicioUsuario.darAdmin(idUsuario).subscribe(
       (response: any) => {
-        console.log(response)
       })
   }
 
-  abrirModal(datosAenviar:any){
-    this.servicioUsuario.disparadorModal.emit(datosAenviar)
+  abrirModalUsuario(usuario:any){
+    this.servicioUsuario.disparadorModal.emit(usuario)
+  }
+
+  abrirModalPedido(usuario:any){
+    this.servicioUsuario.disparadorModal.emit(usuario)
   }
 
   

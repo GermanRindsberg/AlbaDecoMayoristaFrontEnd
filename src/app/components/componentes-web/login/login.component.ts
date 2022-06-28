@@ -41,33 +41,22 @@ export class LoginComponent implements OnInit {
 
     //#region metodo para loguearse con facebook y almacenar datos en la bbdd
     this.socialAuthService.authState.subscribe((user) => {
-
       this.socialUser = user;
       this.isLogin = (user != null);
-
       if (this.isLogin == true) {
-        console.log(user)
-        sessionStorage.setItem('nombreUsuario', user.response.first_name)
-        sessionStorage.setItem('emailUsuario', user.response.email)
         this.mail = user.response.email
-
         var formularioRegistro = {
           email: this.mail,
           nombre: user.response.first_name,
           apellido: user.response.last_name,
           password: 'facebook'
         }
-
         this.servicioUsuario.postUsuario(formularioRegistro).subscribe(
           (response: any) => {
             if (response.usuario.id != null) {
-              let nombreUsuario = response.usuario.perfil.nombre;
-              let idUsuario = response.usuario.id
-              sessionStorage.setItem('nombreUsuario', nombreUsuario);
-              sessionStorage.setItem('idUsuario', idUsuario);
-              sessionStorage.setItem('emailUsuario', response.usuario.email);
               this.servicioUsuario.disparadorLogin.emit(response.usuario);
               this.serviceCookie.set('albaCookie', response.token)
+              sessionStorage.setItem('idUsuario', response.usuario.id);
               this.router.navigate([''])
             }
             else {
@@ -81,6 +70,7 @@ export class LoginComponent implements OnInit {
       }
 
     })
+   
 
 
     //#endregion
@@ -95,7 +85,7 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
   signOut(): void {
-    this.socialAuthService.signOut();
+    this.socialAuthService.signOut(true);
   }
 
   //boton ingresar

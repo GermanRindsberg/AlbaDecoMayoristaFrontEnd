@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidoService } from 'src/app/services/pedido/pedido.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario-service.service';
 
 @Component({
@@ -8,12 +9,16 @@ import { UsuarioService } from 'src/app/services/usuario/usuario-service.service
 })
 export class ModalDetallePedidosComponent implements OnInit {
 
-  constructor(private servicioUsuario: UsuarioService) { }
+  constructor(private servicioUsuario: UsuarioService, private servicioPedido:PedidoService) { }
 
   ngOnInit() {
     this.servicioUsuario.disparadorModal.subscribe((response)=>
     {
-console.log(response)
+     this.servicioPedido.getAllPedidosPorUsuario(response.id).subscribe(data=>{
+      console.log(data)
+     })
+      console.log(response)
+
       
     });
   }

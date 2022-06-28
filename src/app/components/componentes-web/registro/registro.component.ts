@@ -1,6 +1,7 @@
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { Options } from 'ngx-google-places-autocomplete/objects/options/options';
@@ -52,13 +53,13 @@ export class RegistroComponent implements OnInit {
 
   constructor(
     private servicio: UsuarioService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) { }
 
 
   ngOnInit(): void {
-
-    if (sessionStorage.getItem('idUsuario') != null) {
+    if (this.cookieService.get('albaCookie')) {
       this.servicio.getUsuariosId().subscribe(
         (response: any) => {
           console.log(response)
@@ -66,9 +67,9 @@ export class RegistroComponent implements OnInit {
           this.email = response.email
           this.nombre = response.perfil.nombre;
           this.apellido = response.perfil.apellido;
-          this.dni= response.perfil.dni;
-          this.cuit= response.perfil.cuit;
-          this.celular= response.perfil.celular;
+          this.dni = response.perfil.dni;
+          this.cuit = response.perfil.cuit;
+          this.celular = response.perfil.celular;
           this.telefono = response.perfil.telefono;
           //#endregion
           //#region Direccion
@@ -81,10 +82,14 @@ export class RegistroComponent implements OnInit {
           this.codigoPostal = response.direccion.localidad.codigoPostal;
           this.provincia = response.direccion.localidad.provincia.nombre;
           //#endregion
+
         })
+
     }
   }
- 
+
+
+
   public handleAddressChange(address: Address) {
     if (address.address_components.length > 5) {
       this.calle = address.address_components[1].long_name
@@ -98,6 +103,7 @@ export class RegistroComponent implements OnInit {
     }
 
   }
+
   registrar() {
 
     try {
@@ -125,20 +131,21 @@ export class RegistroComponent implements OnInit {
       if (sessionStorage.getItem('idUsuario') == null) {
         this.servicio.postUsuario(this.formularioRegistro).subscribe(
           (response: any) => {
-              if(response.id!=null){
-                let nombreUsuario = response.perfil.nombre;
-                let idUsuario = response['id'];
-                sessionStorage.setItem('nombreUsuario', nombreUsuario);
-                sessionStorage.setItem('idUsuario', idUsuario);
-                this.router.navigate(['']);
-              }
-                Swal.fire({
-                  title: 'Error',
-                  text: response.errors.msg,
-                  icon: 'error'
-                  })
+            if (response.id != null) {
+              let nombreUsuario = response.perfil.nombre;
+              let idUsuario = response['id'];
+              sessionStorage.setItem('nombreUsuario', nombreUsuario);
+              sessionStorage.setItem('idUsuario', idUsuario);
+              this.router.navigate(['']);
             }
-        )}
+            Swal.fire({
+              title: 'Error',
+              text: response.errors.msg,
+              icon: 'error'
+            })
+          }
+        )
+      }
 
       else {
         this.servicio.patchUsuariosId(this.formularioRegistro).subscribe(

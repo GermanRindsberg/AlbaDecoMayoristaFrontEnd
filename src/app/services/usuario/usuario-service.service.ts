@@ -41,6 +41,10 @@ export class UsuarioService {
     return this.http.patch(this.api_usuarios+"/usuario", data, {headers : this.header});
   }
 
+  public darAdmin(idUsuario:any): Observable<any>{
+    return this.http.patch(this.api_usuarios+"/"+idUsuario,'', {headers : this.header});
+  }
+
   public postUsuario(data:any): Observable<any>{
     return this.http.post(this.api_usuarios, data);
   }
@@ -63,7 +67,6 @@ export class UsuarioService {
         else{
           let nombreUsuario = response.usuario.perfil.nombre;
           let idUsuario = response.usuario.id;
-          sessionStorage.setItem('nombreUsuario', nombreUsuario);
           sessionStorage.setItem('idUsuario', idUsuario);
           this.cookieService.set('albaCookie', response.token)
           if(recordar==true)
