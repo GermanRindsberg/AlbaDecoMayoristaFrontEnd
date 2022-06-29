@@ -10,19 +10,20 @@ import { GestionUsuariosComponent } from './components/administracion/gestion-us
 import { HomeComponent } from './components/componentes-web/home/home.component';
 import { LoginComponent } from './components/componentes-web/login/login.component';
 import { RegistroComponent } from './components/componentes-web/registro/registro.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  { path: 'gestionUsuarios', component: GestionUsuariosComponent,canActivate:[AuthGuard] },
+  { path: 'gestionProductos', component: GestionProductoComponent, canActivate:[AuthGuard]  },
+  { path: 'productoNuevo', component: AgregarProductoComponent , canActivate:[AuthGuard] },
+  { path: 'productoNuevo/:idProducto', component: AgregarProductoComponent, canActivate:[AuthGuard]  },
+  { path: 'administracion', component: AdministracionGeneralComponent, canActivate:[AuthGuard]},
+  { path: 'verTodosLosPedidos', component: GestionGeneralPedidosComponent, canActivate:[AuthGuard] },
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'gestionUsuarios', component: GestionUsuariosComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'gestionProductos', component: GestionProductoComponent },
-  { path: 'productoNuevo', component: AgregarProductoComponent },
-  { path: 'productoNuevo/:idProducto', component: AgregarProductoComponent },
   { path: 'verCarrito', component: CarritoComprasComponent },
-  { path: 'verMisPedidos', component: ListadoPedidosComponent },
-  { path: 'verTodosLosPedidos', component: GestionGeneralPedidosComponent },
-  { path: 'administracion', component: AdministracionGeneralComponent },
+  { path: 'verMisPedidos', component: ListadoPedidosComponent }
 ];
 
 @NgModule({

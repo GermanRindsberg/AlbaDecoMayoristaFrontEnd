@@ -9,17 +9,20 @@ import { UsuarioService } from 'src/app/services/usuario/usuario-service.service
 })
 export class ModalDetallePedidosComponent implements OnInit {
 
+  nombre:any;
+  listaPedidos:any;
+  
   constructor(private servicioUsuario: UsuarioService, private servicioPedido:PedidoService) { }
+
 
   ngOnInit() {
     this.servicioUsuario.disparadorModal.subscribe((response)=>
     {
      this.servicioPedido.getAllPedidosPorUsuario(response.id).subscribe(data=>{
-      console.log(data)
+      this.listaPedidos=data
      })
-      console.log(response)
+      this.nombre=response.perfil.nombre +" "+ response.perfil.apellido
 
-      
     });
   }
 

@@ -59,10 +59,9 @@ export class RegistroComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.cookieService.get('albaCookie')) {
-      this.servicio.getUsuariosId().subscribe(
+    
+    this.servicio.getUsuariosId(sessionStorage.getItem("idUsuario")).subscribe(
         (response: any) => {
-          console.log(response)
           //#region Datos Usuario
           this.email = response.email
           this.nombre = response.perfil.nombre;
@@ -85,7 +84,6 @@ export class RegistroComponent implements OnInit {
 
         })
 
-    }
   }
 
 
@@ -128,13 +126,11 @@ export class RegistroComponent implements OnInit {
       }
       //#endregion
 
-      if (sessionStorage.getItem('idUsuario') == null) {
+      if (this.cookieService.check("albaCookie") == false) {
         this.servicio.postUsuario(this.formularioRegistro).subscribe(
           (response: any) => {
             if (response.id != null) {
-              let nombreUsuario = response.perfil.nombre;
               let idUsuario = response['id'];
-              sessionStorage.setItem('nombreUsuario', nombreUsuario);
               sessionStorage.setItem('idUsuario', idUsuario);
               this.router.navigate(['']);
             }
@@ -146,12 +142,10 @@ export class RegistroComponent implements OnInit {
           }
         )
       }
-
       else {
         this.servicio.patchUsuariosId(this.formularioRegistro).subscribe(
           (response: any) => {
             this.router.navigate(['']);
-            console.log(response)
           },
           error => {
             console.log(error);
@@ -177,9 +171,6 @@ export class RegistroComponent implements OnInit {
     else {
       this.banderaPass = false;
     }
-
-
-
   }
 
   eliminarUsuario() {
@@ -197,7 +188,6 @@ export class RegistroComponent implements OnInit {
       if (result.isConfirmed) {
         this.servicio.deleteUsuario().subscribe(
           (response: any) => {
-            console.log(response)
             Swal.fire(
               'Ususario eliminado',
               'Fuiste dado de baja en nuestro sistema, esperamos que vuelvas pronto',

@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 import * as _ from 'lodash';
+import { UsuarioService } from 'src/app/services/usuario/usuario-service.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService, private servicioUsuario:UsuarioService) { }
 
   ngOnInit(): void {
 
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
       this.listaProductos = response
       this.listaFiltrada = this.listaProductos
     })
+    this.servicioUsuario.listaPermitidos();
   }
 
   ngAfterContentInit() {

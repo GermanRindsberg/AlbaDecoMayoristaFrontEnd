@@ -14,29 +14,28 @@ export class UsuarioService {
   @Output() disparadorModal: EventEmitter<any>  = new EventEmitter();
   @Output() disparadorLogin: EventEmitter<any>  = new EventEmitter();
   
-  
   constructor(
     private http: HttpClient, 
     private cookieService:CookieService, 
     private router: Router,
   ) { }
+
   private api_usuarios="http://127.0.0.1:5000/api/usuarios";
   private token = this.cookieService.get('albaCookie');
+  listaPermitidos:any
 
   private header = new HttpHeaders({ 
   "Content-Type": "application/json", 
   'Authorization': 'Bearer ' + this.token });
-   
-  
 
   public getAllUsuarios(): Observable<any>{
     return this.http.get(this.api_usuarios, {headers : this.header});
   }
   
-  public getUsuariosId(): Observable<any>{
-    return this.http.post(this.api_usuarios +"/usuario",'', {headers : this.header});
+  public getUsuariosId(idUsuario:any): Observable<any>{
+    return this.http.get(this.api_usuarios +"/usuario/"+idUsuario);
   }
-
+  
   public patchUsuariosId(data:any): Observable<any>{
     return this.http.patch(this.api_usuarios+"/usuario", data, {headers : this.header});
   }
@@ -53,7 +52,7 @@ export class UsuarioService {
     return this.http.delete(this.api_usuarios+"/usuario", {headers : this.header});
   }
 
-  public verificarLogin(data:any, recordar:boolean, rutaOrigen){
+  public verificarLogin(data:any, rutaOrigen){
     return this.http.post(this.api_usuarios + "/token", data).subscribe((response:any)=>{
     
       if(response['msg'])
@@ -66,6 +65,7 @@ export class UsuarioService {
           }
         else{
             this.cookieService.set('albaCookie', response.token)
+            sessionStorage.setItem('emailUsuario', response.usuario.email);
             sessionStorage.setItem('idUsuario', response.usuario.id);
             this.disparadorLogin.emit(response.usuario);
             this.router.navigate([rutaOrigen]);
@@ -73,6 +73,7 @@ export class UsuarioService {
     });
   }
 
-
-
+  public esAdmin(idUsuario:any){
+  return this.http.post(this.api_usuarios+"/"+idUsuario,'', {headers : this.header}).subscribe(data=>{})
+  }
 }

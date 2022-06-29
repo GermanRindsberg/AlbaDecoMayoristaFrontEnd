@@ -3,11 +3,34 @@
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title" id="modalPedidosLabel">Pedidos del usuario: usuario <b class="text-primary"></b></h5>
+            <h5 class="modal-title" id="exampleModalLabel">Datos del usuario: <b class="text-primary"> {{nombre}}</b></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             
+            <table class="table table-striped border border-2 border-dark rounded text-center">
+                <thead class="bg-info">
+                    <tr>
+                        <th>Fecha de pedido<br></th>
+                        <th>Monto total<br></th>
+                        <th>Estado</th>
+                        <th>Fecha envio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of listaPedidos">
+                        <td>{{pedido.fechaPedido}}</td>
+                        <td>{{pedido.montoTotal}}</td>
+                        <td>{{pedido.estado}}</td>
+                        <td>{{pedido.fechaEnvio}}</td>
+                    </tr>
+                </tbody>
+    
+            </table>
+
+
+
+
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>

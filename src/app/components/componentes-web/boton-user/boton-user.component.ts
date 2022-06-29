@@ -26,6 +26,7 @@ export class BotonUserComponent implements OnInit {
   ngOnInit(): void {
     
     this.servicioUsuario.disparadorLogin.subscribe(data=>{
+      this.ngOnInit()
       if (data!=null){
       this.usuario=data.perfil.nombre
       this.mostrar=true
@@ -35,7 +36,8 @@ export class BotonUserComponent implements OnInit {
     }
     })
     if(this.cookieService.get('albaCookie')){
-    this.servicioUsuario.getUsuariosId().subscribe(response=>{
+    
+    this.servicioUsuario.getUsuariosId(sessionStorage.getItem("idUsuario")).subscribe(response=>{
       this.usuario=response.perfil.nombre
       this.mostrar=true
       if(response.tipoUsuario=="admin"){
@@ -43,6 +45,7 @@ export class BotonUserComponent implements OnInit {
       }
     })
   }
+    
 
   }
 
@@ -64,13 +67,14 @@ export class BotonUserComponent implements OnInit {
   salir(){
     this.mostrar=false
     this.usuario=null
+    this.socialAuthService.signOut();
+    sessionStorage.removeItem('emailUsuario');
     sessionStorage.removeItem('idUsuario');
     this.cookieService.delete('albaCookie');
-    this.socialAuthService.signOut();
     this.admin=false
     this.servicioUsuario.disparadorLogin.emit()
     this.router.navigate(['login'])
-    this.socialAuthService.signOut();
+
   }
 }
 
