@@ -94,12 +94,10 @@ export class AgregarProductoComponent implements OnInit {
     for (var i = 0; i < this.archivoFotos.length; i++) {
       
       if (this.archivoFotos[i].direccionImage.startsWith('data:')) {
-        console.log("guardo foto nueva")  
         var blobFoto = this.convertirBase64toBlob(this.archivoFotos[i].direccionImage)
         this.formularioParaEnviar.append("" +this.archivoFotos[i].posicion+ "", blobFoto)
       }
       else {
-        console.log("guardo foto existente")  
         this.fotosExistentes.push(this.archivoFotos[i])
       }
       

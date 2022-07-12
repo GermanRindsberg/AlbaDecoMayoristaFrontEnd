@@ -1,0 +1,11 @@
+
+.cruz:hover{
+    cursor: pointer;
+	color: red;
+}
+
+.imagenCarrousel{
+   max-width: 1400px;
+   max-height: 520px;
+	object-fit: contain;
+}

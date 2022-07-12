@@ -1,0 +1,20 @@
+<app-administracion-general></app-administracion-general>
+
+<div class="container p-3 border border-3 rounded-3 ">
+  <h1><u> Agregar/editar imagenes de carrousel</u></h1>
+  <div class="row">
+    <button class="btn btn-primary mt-3" onclick="document.getElementById('inputFoto').click()">Agregar Fotos</button>
+</div>
+<input type="file" accept="image/*" class=" d-none" id="inputFoto" name="fotoPerfil" (change)="onSelect($event)">
+
+<div class="row border mt-3 position-relative rowFoto" *ngFor="let direccionFoto of archivoFotos">
+  <img class="imagenCarrousel  " src="{{direccionFoto.direccionImage}}">
+  <div class=" p-0 m-0 fs-1  position-absolute top-0 text-end ">
+  <i class="fa-solid fa-xmark cruz" (click)="onRemove
+  (direccionFoto)"></i>
+</div>
+</div>
+<button *ngIf="habilitarBoton" class="btn btn-lg btn-secondary mt-5" (click)="guardarFotos()">Aceptar cambios</button>
+
+
+

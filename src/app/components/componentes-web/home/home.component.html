@@ -4,16 +4,17 @@
 
     <div class="row mt-4 justify-content-center">
 
-        <div class="mx-5 my-4  border border-3 rounded-3 p-3" style="width: 30rem;"*ngFor="let producto of listaFiltrada">
+        <div class="mx-5 my-4  border border-3 rounded-3 p-3 contenedorFoto" *ngFor="let producto of listaFiltrada">
             <div class="row justify-content-center">
                 <img src="http://127.0.0.1:5000/static/files/{{producto.fotos[0].direccionImage}}"
                     (click)="abrirModalFoto(producto.fotos[0].direccionImage)" data-bs-toggle="modal"
-                    data-bs-target="#modalFotoGrande" class="shadow-lg p-3 mb-2 bg-body rounded col-10 ms-2">
+                    data-bs-target="#modalFotoGrande" class="shadow-lg p-3 mb-2 bg-body rounded col-10 ms-2 fotoGrande">
             </div>
 
-            <div class="row justify-content-center ">
-                <div class="col-3" *ngFor="let foto of producto.fotos">
-                    <img class="shadow-lg p-1 bg-body rounded fotoAbajo" src="http://127.0.0.1:5000/static/files/{{foto.direccionImage}}"
+            <div class="row  me-2 ">
+              
+                <div class="col-2 my-1 mx-3" *ngFor="let foto of producto.fotos">
+                    <img class="shadow-lg p-1 ms- bg-body rounded fotoAbajo" src="http://127.0.0.1:5000/static/files/{{foto.direccionImage}}"
                         (click)="abrirModalFoto(foto.direccionImage)" data-bs-toggle="modal"
                         data-bs-target="#modalFotoGrande" alt="...">
                 </div>
@@ -27,16 +28,16 @@
                 <div class="row  mx-0">
                     
                     <div class="col text-center ">
-                        <button (click)="abrirOffCanvasProducto(producto)" class=" rounded-pill btn-primary" type="button"data-bs-toggle="offcanvas" data-bs-target="#detalle" aria-controls="detalle">
+                        <button (click)="abrirOffCanvasProducto(producto)" class=" rounded-pill btn-secondary p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#detalle" aria-controls="detalle">
                             <div class="row align-items-center">
-                                <div class="col-2 fs-1"><i class="fa-solid fa-plus"></i></div>
-                                <div class="col">Agregar al carrito</div>
+                                <div class="col-2 fs-4 mx-2"><i class="fa-solid fa-plus"></i></div>
+                                <div class="col ps-0 "><small> Agregar al carrito</small></div>
                             </div>
                           
                         </button>
                     </div>
                     <div class="col">
-                        <h1 class="text-center fs-1 "> <b class="text-primary"> ${{producto.precio}}</b></h1>
+                        <h1 class="text-center fs-1 "> <b class="text-secondary"> ${{producto.precio}}</b></h1>
                     </div>
                 </div>
 

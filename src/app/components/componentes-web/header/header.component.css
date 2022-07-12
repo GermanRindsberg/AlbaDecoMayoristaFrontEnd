@@ -5,9 +5,10 @@
 }
 
 .imagenProducto{
-    max-height: 250px;
-    max-width: 250px;
-    overflow: hidden;
-    border-radius: 30px;
+    width: 250px;
+	height: 250px;
+    border: 1px;
+    border-radius: 50px;
+	object-fit: contain;
     cursor: pointer;
 }       

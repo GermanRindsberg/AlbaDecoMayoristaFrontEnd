@@ -2,8 +2,9 @@
     <div class="btn-group dropdown me-lg-5 me-4">
             <label class="text-warning" for="botonLogin"></label>
         
-            <button class="btn btn-primary  dropdown-toggle" type="button" id="botonLogin" data-bs-toggle="dropdown"
+            <button class="btn btn-secondary  dropdown-toggle" type="button" id="botonLogin" data-bs-toggle="dropdown"
                 aria-expanded="false">
+                
                 <img src="../../../assets/user.png" height="40px" alt="">
             </button>
             <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="botonLogin">
@@ -15,4 +16,4 @@
             </ul>
         </div>
     <!-- FIN BOTON LOGIN -->
-    <p *ngIf="mostrar">Hola<br> <b class="text-uppercase text-info">{{usuario}}</b></p>
+    <p *ngIf="mostrar">Hola<br> <b class="text-uppercase text-secondary">{{usuario}}</b></p>

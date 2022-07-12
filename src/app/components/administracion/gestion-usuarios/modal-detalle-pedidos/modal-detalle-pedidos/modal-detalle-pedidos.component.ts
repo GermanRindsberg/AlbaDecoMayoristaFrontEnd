@@ -18,7 +18,7 @@ export class ModalDetallePedidosComponent implements OnInit {
   ngOnInit() {
     this.servicioUsuario.disparadorModal.subscribe((response)=>
     {
-     this.servicioPedido.getAllPedidosPorUsuario(response.id).subscribe(data=>{
+     this.servicioPedido.getAllPedidosPorUsuario().subscribe(data=>{
       this.listaPedidos=data
      })
       this.nombre=response.perfil.nombre +" "+ response.perfil.apellido

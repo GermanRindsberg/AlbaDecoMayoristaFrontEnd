@@ -7,10 +7,20 @@ img:hover{
 .fotoAbajo{
 	max-height: 100px;
 	width: 100px;
+	object-fit: contain;
 	
 }
-
+.contenedorFoto{
+	width: 30rem;
+}
 h5{
 	font-family: Moonflower;
 	font-size: 25pt;
+}
+
+.fotoGrande{
+	width: 350px;
+	height: 350px;
+	object-fit: contain;
+	
 }

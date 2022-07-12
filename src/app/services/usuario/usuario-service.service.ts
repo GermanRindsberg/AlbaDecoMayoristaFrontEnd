@@ -22,14 +22,17 @@ export class UsuarioService {
 
   private api_usuarios="http://127.0.0.1:5000/api/usuarios";
   private token = this.cookieService.get('albaCookie');
-  listaPermitidos:any
+  private headers: any = {
+    "Authorization": 'Bearer ' + this.token
+  }
+  private httpOptions = {
+    headers: new HttpHeaders(this.headers)
+  }
 
-  private header = new HttpHeaders({ 
-  "Content-Type": "application/json", 
-  'Authorization': 'Bearer ' + this.token });
+
 
   public getAllUsuarios(): Observable<any>{
-    return this.http.get(this.api_usuarios, {headers : this.header});
+    return this.http.get(this.api_usuarios, this.httpOptions);
   }
   
   public getUsuariosId(idUsuario:any): Observable<any>{
@@ -37,11 +40,11 @@ export class UsuarioService {
   }
   
   public patchUsuariosId(data:any): Observable<any>{
-    return this.http.patch(this.api_usuarios+"/usuario", data, {headers : this.header});
+    return this.http.patch(this.api_usuarios+"/usuario", data,this.httpOptions);
   }
 
   public darAdmin(idUsuario:any): Observable<any>{
-    return this.http.patch(this.api_usuarios+"/"+idUsuario,'', {headers : this.header});
+    return this.http.patch(this.api_usuarios+"/"+idUsuario,'', this.httpOptions);
   }
 
   public postUsuario(data:any): Observable<any>{
@@ -49,7 +52,7 @@ export class UsuarioService {
   }
 
   public deleteUsuario(): Observable<any>{
-    return this.http.delete(this.api_usuarios+"/usuario", {headers : this.header});
+    return this.http.delete(this.api_usuarios+"/usuario",this.httpOptions);
   }
 
   public verificarLogin(data:any, rutaOrigen){
@@ -74,6 +77,6 @@ export class UsuarioService {
   }
 
   public esAdmin(idUsuario:any){
-  return this.http.post(this.api_usuarios+"/"+idUsuario,'', {headers : this.header}).subscribe(data=>{})
+  return this.http.post(this.api_usuarios+"/"+idUsuario,'', this.httpOptions).subscribe(data=>{})
   }
 }

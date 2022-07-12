@@ -14,7 +14,7 @@ export class ListadoPedidosComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.servicioPedido.getAllPedidosPorUsuario(sessionStorage.getItem("idUsuario")).subscribe(response=>{
+    this.servicioPedido.getAllPedidosPorUsuario().subscribe(response=>{
       this.listaPedidos=response
     })
   }

@@ -50,6 +50,7 @@ import { SelectSubCategoriaComponent } from './components/componentes-web/filtra
 import { FiltradorComponent } from './components/componentes-web/filtrador/filtrador.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalDetallePedidosComponent } from './components/administracion/gestion-usuarios/modal-detalle-pedidos/modal-detalle-pedidos/modal-detalle-pedidos.component';
+import { ConfiguracionesVisualesComponent } from './components/componentes-web/configuracion-visuales/configuraciones-visuales.component';
 
 
 
@@ -91,7 +92,8 @@ import { ModalDetallePedidosComponent } from './components/administracion/gestio
     SelectCategoriaComponent,
     SelectSubCategoriaComponent,
     FiltradorComponent,
-    ModalDetallePedidosComponent
+    ModalDetallePedidosComponent,
+    ConfiguracionesVisualesComponent
   ],
   imports: [
     BrowserModule,

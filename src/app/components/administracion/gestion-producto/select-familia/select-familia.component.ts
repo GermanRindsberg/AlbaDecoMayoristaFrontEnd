@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { BrowserTransferStateModule } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ColorEvent } from 'ngx-color';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
@@ -60,11 +59,12 @@ export class SelectFamiliaComponent implements OnInit {
         this.idSubcategoria=response.subCategoria.id
         this.listaVariantes = []
         for (var i = 0; i < this.listaDeVariantes.length; i++) {
+          if(response.variantes[i].activo==1){
           this.listaVariantes.push(response.variantes[i].color)
           this.varianteEmit.emit(this.listaVariantes)
           this.subCategoriaEmit.emit(this.idSubcategoria)
           this.categoriaEmit.emit(this.idCategoria)
-          
+          }
         }
       })
     }

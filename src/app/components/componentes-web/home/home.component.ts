@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
       this.listaProductos = response
       this.listaFiltrada = this.listaProductos
     })
-    this.servicioUsuario.listaPermitidos();
   }
 
   ngAfterContentInit() {
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
 
     })
  }
-
 
   abrirModalFoto(direccionFoto: any) {
     this.direccionFoto = direccionFoto;
