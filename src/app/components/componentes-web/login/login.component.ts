@@ -39,9 +39,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     //#region metodo para loguearse con facebook y almacenar datos en la bbdd
     this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLogin = (user != null);
-      if (this.isLogin == true) {
+        this.socialUser = user;
+      
         this.mail = user.response.email
         var formularioRegistro = {
           email: this.mail,
@@ -49,8 +48,10 @@ export class LoginComponent implements OnInit {
           apellido: user.response.last_name,
           password: 'facebook'
         }
+
         this.servicioUsuario.postUsuario(formularioRegistro).subscribe(
           (response: any) => {
+            
             if (response.usuario.id != null) {
               this.servicioUsuario.disparadorLogin.emit(response.usuario);
               this.serviceCookie.set('albaCookie', response.token)
@@ -66,12 +67,7 @@ export class LoginComponent implements OnInit {
               })
             }
           })
-      }
-
     })
-   
-
-
     //#endregion
   }
 

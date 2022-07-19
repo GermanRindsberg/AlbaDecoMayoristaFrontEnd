@@ -1,16 +1,20 @@
 <div class="row ">
   <div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">
     <div class="carousel-inner ">
-      <div class="carousel-item active text-center ">
-        <img class="d-sm d-lg-none " src="../../../assets/novedades.png"  alt="...">
-        <img class="d-none d-lg-inline " src="../../../assets/novedadesgde.png"  alt="...">
-      </div>
-      <div class="carousel-item text-center py-5" *ngFor="let producto of listaProductos">
-        <h3 class="titulo"><b>{{producto.nombre}}</b></h3>
+    
+      <div *ngIf="listaPortadas!=null" class="carousel-item active text-center py-5">
         <div class=" row justify-content-center">
-            <img class="imagenProducto mx-2 col"  src="http://127.0.0.1:5000/static/files/{{producto.fotos[0].direccionImage}}" alt="...">
+            <img class="imagenProducto mx-2 col"  src="{{portadaActiva}}">
         </div>
       </div>
+      <div class="carousel-item  text-center py-5 " *ngFor="let portada of listaPortadas">
+        <div class=" row justify-content-center">
+            <img class="imagenProducto mx-2 col"  src="{{portada.direccionPortada}}">
+        </div>
+      </div>
+
+
+
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
         data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

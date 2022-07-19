@@ -7,7 +7,7 @@ import { ListadoPedidosComponent } from './components/administracion/gestion-ped
 import { AgregarProductoComponent } from './components/administracion/gestion-producto/agregar-producto/agregar-producto.component';
 import { GestionProductoComponent } from './components/administracion/gestion-producto/gestion-producto.component';
 import { GestionUsuariosComponent } from './components/administracion/gestion-usuarios/gestion-usuarios.component';
-import { ConfiguracionesVisualesComponent } from './components/componentes-web/configuracion-visuales/configuraciones-visuales.component';
+import { ConfiguracionesComponent } from './components/componentes-web/configuraciones/configuraciones.component';
 import { HomeComponent } from './components/componentes-web/home/home.component';
 import { LoginComponent } from './components/componentes-web/login/login.component';
 import { RegistroComponent } from './components/componentes-web/registro/registro.component';
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'productoNuevo', component: AgregarProductoComponent , canActivate:[AuthGuard] },
   { path: 'productoNuevo/:idProducto', component: AgregarProductoComponent, canActivate:[AuthGuard]  },
   { path: 'administracion', component: AdministracionGeneralComponent, canActivate:[AuthGuard]},
-  { path: 'gestionVisuales', component: ConfiguracionesVisualesComponent,canActivate:[AuthGuard]},
+  { path: 'gestionVisuales', component: ConfiguracionesComponent,canActivate:[AuthGuard]},
   { path: 'verTodosLosPedidos', component: GestionGeneralPedidosComponent, canActivate:[AuthGuard] },
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },

@@ -15,7 +15,7 @@ export class MatselectDatosPersonalesComponent implements OnInit {
   
   constructor(private servicioUsuario: UsuarioService, private servicioPedido:PedidoService) { }
   ngOnInit(): void {
-    this.servicioUsuario.getUsuariosId(sessionStorage.getItem("idUsuario")).subscribe(data=>{
+    this.servicioUsuario.getUsuario().subscribe(data=>{
       this.formularioDatos.controls['email'].setValue(data.email)
       this.formularioDatos.controls['nombre'].setValue(data.perfil.nombre)
       this.formularioDatos.controls['apellido'].setValue(data.perfil.apellido)

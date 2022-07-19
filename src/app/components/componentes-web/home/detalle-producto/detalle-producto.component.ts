@@ -26,11 +26,13 @@ export class DetalleProductoComponent implements OnInit {
   }
 
   agregarProducto() {
+    console.log(this.data)
     this.servicioCarrito.disparadorCarrito.emit(this.data)
     sessionStorage.setItem("productosCarrito", JSON.stringify(this.data))
   }
   
   modificaCantidades(event: any, variante: any) {
+    
       var varianteData= variante;
       var cantidad=  event.target.value
       if(cantidad=='')

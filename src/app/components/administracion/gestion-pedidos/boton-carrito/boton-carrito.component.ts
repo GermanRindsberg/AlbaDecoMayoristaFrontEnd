@@ -30,7 +30,7 @@ export class BotonCarritoComponent implements OnInit {
     if(this.productosRecibidos!=null){
     for (let i = 0; i < this.productosRecibidos.length; i++) {
       var cantidad = this.productosRecibidos[i].cantidad;
-      
+     
       if (cantidad != '') {
          suma = suma + parseInt(cantidad)
        }

@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 
 @Component({
-  selector: 'app-datos-producto',
-  templateUrl: './datos-producto.component.html',
-  styleUrls: ['./datos-producto.component.css']
+  selector: 'app-datos_producto',
+  templateUrl: './datos_producto.component.html',
+  styleUrls: ['./datos_producto.component.css']
 })
-export class DatosProductoComponent implements OnInit {
-
+export class Datos_productoComponent implements OnInit {
+  
   @Output() datosProducto = new EventEmitter<any>();
- 
+
   nombreProducto: any = ''
   alto: any = ''
   ancho: any = ''
@@ -19,6 +19,7 @@ export class DatosProductoComponent implements OnInit {
   precio: any = ''
   descripcion: any = ''
   idProducto:any="";
+
   constructor( private route :ActivatedRoute, private servicioProducto :ProductoService) { }
 
   ngOnInit(): void {
@@ -45,10 +46,7 @@ export class DatosProductoComponent implements OnInit {
         this.datosProducto.emit(data)
       })
     }
-      
-      
   }
-  
 
   cambioInput() {
     var data = {

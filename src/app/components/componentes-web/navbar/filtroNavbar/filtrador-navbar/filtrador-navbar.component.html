@@ -1,0 +1,17 @@
+<!-- Tree Menu -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Productos</a>
+  <ul class="dropdown-menu">
+    <li *ngFor="let categoria of listaCategorias">
+      <a class="dropdown-item" href="#" (click)="filtrarCategoria(categoria.categoria.nombre)"> {{categoria.categoria.nombre}}</a>
+      <!-- Drop Down -->
+      <ul class="submenu dropdown-menu">
+        <li>
+          <a class="dropdown-item" href="#"(click)="filtrarCategoria(categoria.subCategoria.nombre)" >{{categoria.subCategoria.nombre}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<!-- Ends -->

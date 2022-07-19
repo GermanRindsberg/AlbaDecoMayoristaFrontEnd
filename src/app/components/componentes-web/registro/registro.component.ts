@@ -60,7 +60,7 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.servicio.getUsuariosId(sessionStorage.getItem("idUsuario")).subscribe(
+    this.servicio.getUsuario().subscribe(
         (response: any) => {
           //#region Datos Usuario
           this.email = response.email
@@ -85,8 +85,6 @@ export class RegistroComponent implements OnInit {
         })
 
   }
-
-
 
   public handleAddressChange(address: Address) {
     if (address.address_components.length > 5) {
@@ -146,12 +144,21 @@ export class RegistroComponent implements OnInit {
         this.servicio.patchUsuariosId(this.formularioRegistro).subscribe(
           (response: any) => {
             this.router.navigate(['']);
+            if(response.id){
+              Swal.fire({
+                title: 'Usuario editado con exito!!',
+                icon: 'success',
+                confirmButtonText: "Aceptar",
+              }).then(resulado => {
+                if (resulado) window.location.reload();
+              })
+            }
           },
           error => {
             console.log(error);
             Swal.fire({
               title: 'Error',
-              text: 'Ha ocurrido un error al registrarse',
+              text: 'Ha ocurrido un error al editar el usuario',
               icon: 'error'
             });
           }

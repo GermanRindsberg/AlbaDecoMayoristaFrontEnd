@@ -78,9 +78,7 @@ export class FotosProductoComponent implements OnInit {
   posicionesDefotos() {
     for (var i = 0; i < this.archivoFotos.length; i++) {
       this.archivoFotos[i].posicion=i      
-      
     }
-    console.log(this.archivoFotos)
   }
 
 

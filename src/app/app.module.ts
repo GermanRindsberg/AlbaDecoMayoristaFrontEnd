@@ -28,10 +28,10 @@ import { GestionProductoComponent } from './components/administracion/gestion-pr
 import { TablaProductosComponent } from './components/administracion/gestion-producto/tabla-productos/tabla-productos.component';
 import { BuscadorProductosPipe } from './pipes/productos/buscador-productos.pipe';
 import { AgregarProductoComponent } from './components/administracion/gestion-producto/agregar-producto/agregar-producto.component';
-import { FotosProductoComponent } from './components/administracion/gestion-producto/fotos-producto/fotos-producto.component';
+import { FotosProductoComponent } from './components/administracion/gestion-producto/agregar-producto/fotos-producto/fotos-producto.component';
 import { SelectFamiliaComponent } from './components/administracion/gestion-producto/select-familia/select-familia.component';
 import { ModalFamiliaComponent } from './components/administracion/gestion-producto/select-familia/modal-familia/modal-familia.component';
-import { DatosProductoComponent } from './components/administracion/gestion-producto/datos-producto/datos-producto.component';
+import { Datos_productoComponent } from './components/administracion/gestion-producto/agregar-producto/datos_producto/datos_producto.component'; 
 import { ModalSubcategoriaComponent } from './components/administracion/gestion-producto/select-familia/modal-subcategoria/modal-subcategoria.component';
 import { ModalFotoGrandeComponent } from './components/componentes-web/home/modal-foto-grande/modal-foto-grande.component';
 import { DetalleProductoComponent } from './components/componentes-web/home/detalle-producto/detalle-producto.component';
@@ -50,8 +50,15 @@ import { SelectSubCategoriaComponent } from './components/componentes-web/filtra
 import { FiltradorComponent } from './components/componentes-web/filtrador/filtrador.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalDetallePedidosComponent } from './components/administracion/gestion-usuarios/modal-detalle-pedidos/modal-detalle-pedidos/modal-detalle-pedidos.component';
-import { ConfiguracionesVisualesComponent } from './components/componentes-web/configuracion-visuales/configuraciones-visuales.component';
-
+import { FiltradorNavbarComponent } from './components/componentes-web/navbar/filtroNavbar/filtrador-navbar/filtrador-navbar.component';
+import { ConfiguracionesComponent } from './components/componentes-web/configuraciones/configuraciones.component';
+import { PortadasComponent } from './components/componentes-web/configuraciones/portadas/portadas/portadas.component';
+import { GeneralesComponent } from './components/componentes-web/configuraciones/configuraciones-generales/generales/generales.component';
+import {MatTreeModule} from '@angular/material/tree';
+import { CategoriaComponent } from './components/administracion/gestion-producto/agregar-producto/categoria/categoria.component';
+import { ModalCategoriaComponent } from './components/administracion/gestion-producto/agregar-producto/categoria/modal-categoria/modal-categoria.component';
+import { VarianteComponent } from './components/administracion/gestion-producto/agregar-producto/variante/variante.component';
+import { ModalVarianteComponent } from './components/administracion/gestion-producto/agregar-producto/variante/modal-variante/modal-variante.component';
 
 
 @NgModule({
@@ -74,7 +81,7 @@ import { ConfiguracionesVisualesComponent } from './components/componentes-web/c
     FotosProductoComponent,
     SelectFamiliaComponent,
     ModalFamiliaComponent,
-    DatosProductoComponent,
+    Datos_productoComponent,
     ModalSubcategoriaComponent,
     OrderByPipe,
     ModalFotoGrandeComponent,
@@ -93,7 +100,14 @@ import { ConfiguracionesVisualesComponent } from './components/componentes-web/c
     SelectSubCategoriaComponent,
     FiltradorComponent,
     ModalDetallePedidosComponent,
-    ConfiguracionesVisualesComponent
+    ConfiguracionesComponent,
+    FiltradorNavbarComponent,
+    PortadasComponent,
+    GeneralesComponent,
+    CategoriaComponent,
+    ModalCategoriaComponent,
+    VarianteComponent,
+    ModalVarianteComponent
   ],
   imports: [
     BrowserModule,
@@ -104,11 +118,13 @@ import { ConfiguracionesVisualesComponent } from './components/componentes-web/c
     GooglePlaceModule,
     SortablejsModule,
     ColorSwatchesModule,
+    
     NgxDropzoneModule,
     BrowserAnimationsModule,
     MatStepperModule,
     MatCardModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTreeModule
   ],
   providers: [
     CookieService,

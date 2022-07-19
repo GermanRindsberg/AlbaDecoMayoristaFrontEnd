@@ -8,7 +8,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario-service.service
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   listaProductos: any
   direccionFoto: any;
   productoAenviar: {} = {};
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.productoService.getAllProductos().subscribe((response: any) => {
-      this.listaProductos = response
+      
+      this.listaProductos=response
       this.listaFiltrada = this.listaProductos
     })
   }

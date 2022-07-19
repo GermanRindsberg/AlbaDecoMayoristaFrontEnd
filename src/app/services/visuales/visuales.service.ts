@@ -51,7 +51,7 @@ export class VisualesService {
 
 
   public deletePortada(idPortada: any): Observable<any> {
-    return this.http.delete(this.api_visuales + "/" + idPortada,this.httpOptions);
+    return this.http.delete(this.api_visuales + "/" + idPortada, this.httpOptions);
   }
 
 

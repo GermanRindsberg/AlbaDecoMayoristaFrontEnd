@@ -3,7 +3,7 @@
     (ngModelChange)="filtrarCategoria($event)" 
     class="form-select" 
     aria-label="Default select example">
-        <option value="" selected >Selecciona una categoria</option>
+        <option value="" selected >Selecciona un tipo de producto</option>
 
         <option *ngFor="let item of listaProductos" [value]="item">{{item}}
         </option>

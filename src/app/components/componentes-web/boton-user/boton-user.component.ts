@@ -37,7 +37,7 @@ export class BotonUserComponent implements OnInit {
     })
     if(this.cookieService.get('albaCookie')){
     
-    this.servicioUsuario.getUsuariosId(sessionStorage.getItem("idUsuario")).subscribe(response=>{
+    this.servicioUsuario.getUsuario().subscribe(response=>{
       this.usuario=response.perfil.nombre
       this.mostrar=true
       if(response.tipoUsuario=="admin"){
@@ -73,8 +73,7 @@ export class BotonUserComponent implements OnInit {
     this.cookieService.delete('albaCookie');
     this.admin=false
     this.servicioUsuario.disparadorLogin.emit()
-    this.router.navigate(['login'])
-
+    this.router.navigate([''])
   }
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto/producto.service';
+import { VisualesService } from 'src/app/services/visuales/visuales.service';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +8,17 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  listaProductos:any
-  fotos:[]=[]
-
+  listaPortadas:any
+  portadaActiva:any
   
-  constructor(private productoService: ProductoService) { }
+  constructor(private portadaService: VisualesService) { }
 
   ngOnInit(): void {
-    this.productoService.getAllProductos().subscribe((response: any) => {
-      this.listaProductos=response
-      
+    this.portadaService.getAllPortadas().subscribe((response: any) => {
+      if(response!=""){
+        this.portadaActiva=response.shift().direccionPortada
+        this.listaPortadas=response
+      }
     })
   }
   

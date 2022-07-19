@@ -17,6 +17,7 @@ export class CarritoComprasComponent implements OnInit {
     datosUsuario:any;
     datosDireccion:any;
     banderaPedido:any=0;
+    minimoNecesario:any
 
     
     constructor(private servicioCarrito: CarritoService,private servicioPedido:PedidoService){}
@@ -83,16 +84,17 @@ export class CarritoComprasComponent implements OnInit {
     }
 
     realizarPedido(){
+        var montoTotal=this.subTotal-this.descuento
         var data={
             productos:this.productos,
             subTotal:this.subTotal,
             descuento:this.descuento,
-            montoTotal:this.subTotal-this.descuento,
+            montoTotal:montoTotal,
             idUsuario:sessionStorage.getItem("idUsuario"),
             nombreUsuario:sessionStorage.getItem("nombreUsuario"),
             emailUsuario:sessionStorage.getItem("emailUsuario")
         }
-
+        if (montoTotal>this.minimoNecesario)
         this.banderaPedido=1;
         this.servicioPedido.postPedido(data).subscribe(response=>{
             console.log(response.estado)

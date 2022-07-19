@@ -71,7 +71,6 @@ export class SelectFamiliaComponent implements OnInit {
     this.varianteEmit.emit(this.listaVariantes)
   }
 
-
   eliminarSubcategoria(subCategoriaId: any) {
 
     Swal.fire({
